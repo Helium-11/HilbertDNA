@@ -1,0 +1,111 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>DNA Image Encoder</title>
+    <style>
+        body {
+            font-family: Arial;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+        .box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🧬 DNA Image Encoder</h1>
+
+<div class="box">
+    <h2>Encode Text → Image</h2>
+    <textarea id="textInput" placeholder="Enter text..."></textarea>
+    <button onclick="encodeText()">Encode</button>
+    <div id="encodeResult"></div>
+</div>
+
+<div class="box">
+    <h2>Decode Image → Text</h2>
+    <input type="file" id="imageInput" />
+    <button onclick="decodeImage()">Decode</button>
+    <div id="decodeResult"></div>
+</div>
+
+<script>
+async function encodeText() {
+    const text = document.getElementById("textInput").value;
+
+    const response = await fetch("/encode_text", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text })
+    });
+
+    const data = await response.json();
+
+    if (data.image_url) {
+        document.getElementById("encodeResult").innerHTML =
+            `<p>Saved ID: ${data.id}</p>
+             <img src="${data.image_url}" />`;
+    } else {
+        document.getElementById("encodeResult").innerText = "Error!";
+    }
+}
+
+async function decodeImage() {
+    console.log("DECODE FUNCTION TRIGGERED");
+
+    const fileInput = document.getElementById("imageInput");
+
+    console.log("File input:", fileInput.files);
+
+    if (!fileInput.files.length) {
+        alert("Please select an image first.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    const response = await fetch("/decode_image", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await response.json();
+
+    console.log("Backend response:", data);
+
+    if (data.decoded_text) {
+        document.getElementById("decodeResult").innerText =
+            "Decoded Text: " + data.decoded_text;
+    } else if (data.error) {
+        document.getElementById("decodeResult").innerText =
+            "Backend Error: " + data.error;
+    } else {
+        document.getElementById("decodeResult").innerText =
+            "Unknown error occurred.";
+    }
+}
+
+</script>
+
+</body>
+</html> -->
