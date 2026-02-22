@@ -37,6 +37,33 @@ IMAGE (Hilbert curve mapping)
 
 ---
 
+## Usage
+### Encode Text to Image
+```
+from tex_to_dna import text_to_dna
+from hilbert import HilbertDNACodec
+
+text = "Who Was Buddha?"
+dna = text_to_dna(text)
+
+codec = HilbertDNACodec()
+codec.dna_to_image(dna, "output.png")
+```
+
+### Decode Image Back to Text
+```
+from tex_to_dna import dna_to_text
+from hilbert import HilbertDNACodec
+
+codec = HilbertDNACodec()
+
+dna = codec.image_to_dna("output.png")
+text = dna_to_text(dna)
+
+print(text)
+```
+
+
 ## Web & API Readiness
 
 ### REST-Compatible Core Logic
