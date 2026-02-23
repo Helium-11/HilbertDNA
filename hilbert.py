@@ -89,9 +89,7 @@ class HilbertDNACodec:
         for idx in range(total_bytes):
 
             x, y = self.hilbert_index_to_xy(side, idx)
-
             byte = payload[idx]
-
             r = byte
 
             # decorative channels (safe)
@@ -162,5 +160,6 @@ if __name__ == "__main__":
     codec.dna_to_image(dna, "test.png")
     decoded = codec.image_to_dna("test.png")
     print(decoded)
+
 
     print("Match:", dna == decoded)
