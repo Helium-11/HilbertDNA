@@ -80,8 +80,8 @@ def text_to_dna(text: str) -> str:
 def dna_to_text(dna: str) -> str:
     binary = dna_to_binary(dna)
     text= binary_to_text(binary)
-
-
     return text
+    
+
 
 
